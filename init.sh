@@ -62,6 +62,10 @@ fi
 # Install the base packages
 sudo $PKG_MGR install tmux
 
+# Install the Python packages
+# TODO: This may need to be under sudo
+pip install flake8
+
 # Install Pathogen
 if [ ! -d /home/ec2-user/.vim ]; then
 	mkdir /home/ec2-user/.vim
@@ -80,6 +84,11 @@ curl -LSso /home/ec2-user/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 # Install NERDTree
 if [ ! -d /home/ec2-user/.vim/bundle/nerdtree ]; then
 	git clone https://github.com/scrooloose/nerdtree.git /home/ec2-user/.vim/bundle/nerdtree
+fi
+
+# Install vim-flake8
+if [ ! -d /home/ec2-user/.vim/bundle/flake8]; then
+	git clone https://github.com/nvie/vim-flake8.git /home/ec2-user/.vim/budle/flake8
 fi
 
 # Make the standard vimrc file the default
