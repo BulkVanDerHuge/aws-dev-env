@@ -35,3 +35,7 @@ set nowrap
 " NERDTree shortcut
 map <C-t> :NERDTreeToggle<CR>
 
+" autopep8 shortcut
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+
+
