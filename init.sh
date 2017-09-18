@@ -31,6 +31,8 @@ function set_package_manager {
 		PKG_MGR='yum'
 	elif [ -f /etc/SuSe-release ]; then
 		PKG_MGR='yum'
+	elif [ -d /etc/yum ]; then
+		PKG_MGR='yum'
 	elif [ -f /etc/debian_version ]; then
 		PKG_MGR='apt-get'
 	elif [ -f /etc-lsb-release ]; then
@@ -51,18 +53,39 @@ fi
 echo - Determining package manager...
 set_package_manager
 
-if [ $PKG_MGR == '' ]; then
+if [ "$PKG_MGR" == "" ]; then
 	report_err -3 'Package manager cannot be determined.'
 else
 	echo - Package manager: $PKG_MGR
 fi
 
-# TODO: Install the following:
-#	vim
-#		pathogen
-#			NERDTree
-#		std.vimrc as .vimrc
-#		~/py.vimrc as ~/.vimrc.py
+# Install the base packages
+sudo $PKG_MGR install tmux
+
+# Install Pathogen
+if [ ! -d /home/ec2-user/.vim ]; then
+	mkdir /home/ec2-user/.vim
+fi
+
+if [ ! -d /home/ec2-user/.vim/autoload ]; then
+	mkdir /home/ec2-user/.vim/autoload
+fi
+
+if [ ! -d /home/ec2-user/.vim/bundle ]; then
+	mkdir /home/ec2-user/.vim/bundle
+fi
+
+curl -LSso /home/ec2-user/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+# Install NERDTree
+if [ ! -d /home/ec2-user/.vim/bundle/nerdtree ]; then
+	git clone https://github.com/scrooloose/nerdtree.git /home/ec2-user/.vim/bundle/nerdtree
+fi
+
+# Make the standard vimrc file the default
+if [ ! -e /home/ec2-user/.vimrc ]; then
+	cp ./std.vimrc /home/ec2-user/.vimrc
+fi
 
 end_initialization 0
 
