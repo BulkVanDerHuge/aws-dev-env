@@ -64,7 +64,7 @@ sudo $PKG_MGR install tmux
 
 # Install the Python packages
 # TODO: This may need to be under sudo
-pip install flake8
+pip install flake8 autopep8
 
 # Install Pathogen
 if [ ! -d /home/ec2-user/.vim ]; then
@@ -87,8 +87,13 @@ if [ ! -d /home/ec2-user/.vim/bundle/nerdtree ]; then
 fi
 
 # Install vim-flake8
-if [ ! -d /home/ec2-user/.vim/bundle/flake8]; then
+if [ ! -d /home/ec2-user/.vim/bundle/flake8 ]; then
 	git clone https://github.com/nvie/vim-flake8.git /home/ec2-user/.vim/budle/flake8
+fi
+
+# Install vim-autopep8
+if [ ! -d /home/ec2-user/.vim/bundle/autopep8 ]; then
+	git clone https://github.com/tell-k/vim-autopep8.git /home/ec2-user/vim/bundle/autopep8
 fi
 
 # Make the standard vimrc file the default
