@@ -66,42 +66,54 @@ sudo $PKG_MGR install tmux
 # TODO: This may need to be under sudo
 sudo pip install flake8 autopep8 numpy
 
+VIM=
+VIM_AUTO_LOAD=
+VIM_BUNDLE=
+
 # Install Pathogen
-if [ ! -d /home/ec2-user/.vim ]; then
-	mkdir /home/ec2-user/.vim
+if [ ! -d $HOME/.vim ]; then
+	mkdir $HOME/.vim
 fi
 
-if [ ! -d /home/ec2-user/.vim/autoload ]; then
-	mkdir /home/ec2-user/.vim/autoload
+VIM=$HOME/.vim
+echo - Setting vim directory to $VIM
+
+if [ ! -d $VIM/autoload ]; then
+	mkdir $VIM/autoload
 fi
 
-if [ ! -d /home/ec2-user/.vim/bundle ]; then
-	mkdir /home/ec2-user/.vim/bundle
+VIM_AUTOLOAD=$VIM/autoload
+echo - Setting vim autoload directory to $VIM_AUTOLOAD
+
+if [ ! -d $VIM/bundle ]; then
+	mkdir $VIM/bundle
 fi
+
+VIM_BUNDLE=$VIM/bundle
+echo - Setting vim bundle directory to $VIM_BUNDLE
 
 if [ ! -e /home/ec2-user/.vim/autoload/pathogen.vim ]; then
 	curl -LSso /home/ec2-user/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 fi
 
 # Install NERDTree
-if [ ! -d /home/ec2-user/.vim/bundle/nerdtree ]; then
-	git clone https://github.com/scrooloose/nerdtree.git /home/ec2-user/.vim/bundle/nerdtree
+if [ ! -d $VIM_BUNDLE/nerdtree ]; then
+	git clone https://github.com/scrooloose/nerdtree.git $VIM_BUNDLE/nerdtree
 fi
 
 # Install vim-flake8
-if [ ! -d /home/ec2-user/.vim/bundle/flake8 ]; then
-	git clone https://github.com/nvie/vim-flake8.git /home/ec2-user/.vim/bundle/flake8
+if [ ! -d $VIM_BUNDLE/flake8 ]; then
+	git clone https://github.com/nvie/vim-flake8.git $VIM_BUNDLE/flake8
 fi
 
 # Install vim-autopep8
-if [ ! -d /home/ec2-user/.vim/bundle/autopep8 ]; then
-	git clone https://github.com/tell-k/vim-autopep8.git /home/ec2-user/.vim/bundle/autopep8
+if [ ! -d $VIM_BUNDLE/autopep8 ]; then
+	git clone https://github.com/tell-k/vim-autopep8.git $VIM_BUNDLE/autopep8
 fi
 
 # Make the standard vimrc file the default
-if [ ! -e /home/ec2-user/.vimrc ]; then
-	cp ./std.vimrc /home/ec2-user/.vimrc
+if [ ! -e $HOME/.vimrc ]; then
+	cp ./std.vimrc $HOME/.vimrc
 fi
 
 end_initialization 0
-
