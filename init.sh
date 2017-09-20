@@ -64,7 +64,7 @@ sudo $PKG_MGR install tmux
 
 # Install the Python packages
 # TODO: This may need to be under sudo
-pip install flake8 autopep8 numpy
+sudo pip install flake8 autopep8 numpy
 
 VIM=
 VIM_AUTO_LOAD=
@@ -92,7 +92,9 @@ fi
 VIM_BUNDLE=$VIM/bundle
 echo - Setting vim bundle directory to $VIM_BUNDLE
 
-curl -LSso $VIM_AUTOLOAD/pathogen.vim https://tpo.pe/pathogen.vim
+if [ ! -e /home/ec2-user/.vim/autoload/pathogen.vim ]; then
+	curl -LSso /home/ec2-user/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+fi
 
 # Install NERDTree
 if [ ! -d $VIM_BUNDLE/nerdtree ]; then
@@ -115,4 +117,3 @@ if [ ! -e $HOME/.vimrc ]; then
 fi
 
 end_initialization 0
-
