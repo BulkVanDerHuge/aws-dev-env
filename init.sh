@@ -60,11 +60,11 @@ else
 fi
 
 # Install the base packages
-sudo $PKG_MGR install tmux
+sudo $PKG_MGR install python27-numpy tmux
 
 # Install the Python packages
 # TODO: This may need to be under sudo
-sudo pip install arrow boto3 flake8 autopep8 numpy yapsy
+sudo pip install arrow boto3 flake8 autopep8 yapsy
 
 VIM=
 VIM_AUTO_LOAD=
