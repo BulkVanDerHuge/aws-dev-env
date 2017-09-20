@@ -64,7 +64,7 @@ sudo $PKG_MGR install tmux
 
 # Install the Python packages
 # TODO: This may need to be under sudo
-sudo pip install flake8 autopep8 numpy
+sudo pip install boto3 flake8 autopep8 numpy yapsy
 
 VIM=
 VIM_AUTO_LOAD=
