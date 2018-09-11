@@ -4,6 +4,7 @@ composed of:
 * init.sh	The automated installation script
 * py.vimrc	A Python-specific .vimrc file
 * std.vimrc	A standard .vimrc file
+* .tmux.conf	A customized tmux configuration file
 
 The workflow for these files is as follows:
 
