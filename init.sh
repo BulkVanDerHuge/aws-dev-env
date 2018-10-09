@@ -63,12 +63,7 @@ fi
 sudo $PKG_MGR install python27-numpy tmux
 
 # Install the Python packages
-# TODO: This may need to be under sudo
-sudo pip install arrow boto3 flake8 autopep8 yapsy
-
-VIM=
-VIM_AUTO_LOAD=
-VIM_BUNDLE=
+pip install arrow boto3 flake8 autopep8 numpy --user
 
 # Install Pathogen
 if [ ! -d $HOME/.vim ]; then
