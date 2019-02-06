@@ -60,7 +60,7 @@ else
 fi
 
 # Install the base packages
-sudo $PKG_MGR install python27-numpy tmux
+sudo $PKG_MGR install python27-numpy python-pip tmux
 
 # Install the Python packages
 pip install arrow boto3 flake8 autopep8 numpy --user
