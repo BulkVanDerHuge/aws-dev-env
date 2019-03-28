@@ -95,8 +95,8 @@ fi
 VIM_BUNDLE=$VIM/bundle
 echo - Setting vim bundle directory to $VIM_BUNDLE
 
-if [ ! -e /home/ec2-user/.vim/autoload/pathogen.vim ]; then
-	curl -LSso /home/ec2-user/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+if [ ! -e $HOME/ec2-user/.vim/autoload/pathogen.vim ]; then
+	curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 fi
 
 # Install NERDTree
@@ -120,3 +120,4 @@ if [ ! -e $HOME/.vimrc ]; then
 fi
 
 end_initialization 0
+
