@@ -9,6 +9,15 @@ function end_initialization {
 	exit $1
 }
 
+function install_vim_pkg {
+    PKG_NM=$1
+    GIT_LOC=$2
+
+    if [ ! -d $VIM_BUNDLE/$PKG_NM ]; then
+        git clone $GIT_LOC $VIM_BUNDLE/$PKG_NM
+    fi
+}
+
 function report_err {
 	echo ERR: $2
 	end_initialization $1
@@ -100,23 +109,29 @@ if [ ! -e $HOME/ec2-user/.vim/autoload/pathogen.vim ]; then
 fi
 
 # Install NERDTree
-if [ ! -d $VIM_BUNDLE/nerdtree ]; then
-	git clone https://github.com/scrooloose/nerdtree.git $VIM_BUNDLE/nerdtree
-fi
+install_vim_pkg nerdtree https://github.com/scrooloose/nerdtree.git
 
 # Install vim-flake8
-if [ ! -d $VIM_BUNDLE/flake8 ]; then
-	git clone https://github.com/nvie/vim-flake8.git $VIM_BUNDLE/flake8
-fi
+install_vim_pkg flake8 https://github.com/nvie/vim-flake8.git
 
 # Install vim-autopep8
-if [ ! -d $VIM_BUNDLE/autopep8 ]; then
-	git clone https://github.com/tell-k/vim-autopep8.git $VIM_BUNDLE/autopep8
-fi
+install_vim_pkg autopep8 https://github.com/tell-k/vim-autopep8.git
 
-# Make the standard vimrc file the default
+# Install file-line
+install_vim_pkg file-line https://github.com/bogado/file-line.git
+
+# Install syntastic
+install_vim_pkg syntastic https://github.com/vim-syntastic/syntastic.git
+
+# Install tagbar
+install_vim_pkg tagbar https://github.com/majutsushi/tagbar.git
+
+# Install vim-airline
+install_vim_pkg vim-airline https://github.com/vim-airline/vim-airline.git
+
+# Make the Python vimrc file the default (blegh!)
 if [ ! -e $HOME/.vimrc ]; then
-	cp ./std.vimrc $HOME/.vimrc
+	cp ./py.vimrc $HOME/.vimrc
 fi
 
 end_initialization 0
