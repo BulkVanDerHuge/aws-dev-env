@@ -24,18 +24,36 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 
-" Enable better autocompletion
-set wildmenu
-
 " Show matching parens
 set showmatch
 
 set nowrap
 
+" Highlight trailing spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" Enable better autocompletion
+set wildmenu
+
 " NERDTree shortcut
 map <C-t> :NERDTreeToggle<CR>
+
+" Tabbar shortcut
+nmap <F12> :TagbarToggle<CR>
 
 " autopep8 shortcut
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 
+" Python Complete plugin
+set omnifunc=syntaxcomplete#Complete
+
+" Python skeleton file
+au BufNewFile *d.py 0r ~/.vim/daemon_skeleton.py
+au BufNewFile *.py 0r ~/.vim/skeleton.py
+au BufNewFile config.json 0r ~/.vim/config.json
 
