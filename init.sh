@@ -1,6 +1,5 @@
 #!/bin/bash
 
-ADD_PKGS=
 BITS=
 PKG_MGR=''
 
@@ -45,10 +44,8 @@ function set_package_manager {
 		PKG_MGR='yum'
 	elif [ -f /etc/debian_version ]; then
 		PKG_MGR='apt-get'
-        ADD_PKGS='aptitude'
 	elif [ -f /etc-lsb-release ]; then
 		PKG_MGR='apt-get'
-        ADD_PKGS='aptitude'
 	fi
 }
 
@@ -72,11 +69,7 @@ else
 fi
 
 # Install the base packages
-sudo $PKG_MGR install python3 tmux $ADD_PKGS
-
-# Install the Python packages
-# TODO: This may need to be under sudo
-sudo pip install arrow boto3 flake8 autopep8
+sudo $PKG_MGR install python3 tmux
 
 VIM=
 VIM_AUTO_LOAD=
