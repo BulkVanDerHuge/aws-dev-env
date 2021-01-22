@@ -40,7 +40,7 @@ function set_package_manager {
 		PKG_MGR='yum'
 	elif [[ -f /etc/SuSe-release ]]; then
 		PKG_MGR='yum'
-	elif [[ -d /etc/yum ]; then
+	elif [[ -d /etc/yum ]]; then
 		PKG_MGR='yum'
 	elif [[ -f /etc/debian_version ]]; then
 		PKG_MGR='apt-get'
@@ -87,7 +87,7 @@ if [[ ! -d $VIM/autoload ]]; then
 	mkdir $VIM/autoload
 fi
 
-if [[ !-d $VIM/templates ]]; then
+if [[ ! -d $VIM/templates ]]; then
     mkdir $VIM/templates
 fi
 
