@@ -19,10 +19,10 @@ set mouse=a
 " Display line numbers
 set number
 
-set noexpandtab
-set shiftwidth=8
-set softtabstop=8
-set tabstop=8
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
 
 " Show matching parens
 set showmatch
@@ -53,7 +53,10 @@ autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 set omnifunc=syntaxcomplete#Complete
 
 " Python skeleton file
-au BufNewFile *d.py 0r ~/.vim/daemon_skeleton.py
-au BufNewFile *.py 0r ~/.vim/skeleton.py
-au BufNewFile config.json 0r ~/.vim/config.json
+if has("autocmd")
+    augroup templates
+        autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+        autocmd BufNewFile *.py 0r ~/.vim/templates/skeleton.py
+    augroup END
+endif
 
