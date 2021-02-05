@@ -69,7 +69,7 @@ else
 fi
 
 # Install the base packages
-sudo $PKG_MGR install python3 tmux
+sudo $PKG_MGR install tmux vim wget
 
 VIM=
 VIM_AUTO_LOAD=
@@ -128,7 +128,7 @@ install_vim_pkg vim-airline https://github.com/vim-airline/vim-airline.git
 
 # Make the Python vimrc file the default (blegh!)
 if [[ ! -e $HOME/.vimrc ]]; then
-	cp ./stdvimrc $HOME/.vimrc
+	cp ./std.vimrc $HOME/.vimrc
 fi
 
 # Copy the templates in
